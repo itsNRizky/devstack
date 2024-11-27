@@ -1,0 +1,24 @@
+=== Setup ESLint ===
+for better typing / code style
+https://standardjs.com/rules
+- npm install eslint-config-standard
+- add "standard" to .eslintrc.json file
+
+also for the tailwindcss
+- npm install eslint-plugin-tailwindcss
+- add "plugin:tailwindcss/recommended" to .eslintrc.json file
+
+prettier and eslint can conflict sometimes
+- npm install eslint-config-prettier
+- npm install prettier
+
+and autopretty the import
+- npm install eslint-plugin-import --save-dev
+- add the plugin import in .eslintrc.json file
+
+vscode setup
+- create vscode settings.json
+- and make sure have eslint, prettier, prettier eslint extension
+(well, it's more like for the sake of safety in vscode :D)
+(well, the eslint file is provided :D)
+
