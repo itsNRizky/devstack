@@ -28,3 +28,9 @@ Theming :D
 
 Making 
 https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
+
+=== Setup Fonts ===
+Well, you know how to use local Fonts
+*Hmmm I still have no idea what's the difference between font.className and font.variable
+
+And also don't forget to specify the font on tailwindcss config and globalcss

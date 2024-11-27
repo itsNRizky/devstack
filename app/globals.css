@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* for default font for the whole app */
 body {
   font-family: "Inter", sans-serif;
 }
