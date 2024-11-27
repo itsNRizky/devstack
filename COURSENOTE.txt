@@ -22,3 +22,9 @@ vscode setup
 (well, it's more like for the sake of safety in vscode :D)
 (well, the eslint file is provided :D)
 
+
+=== Setup Tailwindcss ===
+Theming :D
+
+Making 
+https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
