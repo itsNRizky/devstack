@@ -101,6 +101,10 @@ How code gets converted into websites
 - Setup context provider to use the themes provider (set up in context/Themes.tsx)
 - Useful link: https://github.com/pacocoursey/next-themes?tab=readme-ov-file#api
 - If there is a hydration error: just pass <code>suppressHydrationWarning</code> to the html tag in layout.tsx
+
+NOTE: UNIQUE THINGS HERE!!!
+So basically I just surfing around about "use client" in layout.tsx doesn't block it's page to be server component, but page.tsx and the children component has strict rules about this (client component parent will only have client component children)
+Based on ChatGPT: NextJS has special rules for where the layout.tsx can be client and the children can be client or server. It is because layout.tsx serves as a wrapper for the app's routing (?)
 </details>
 
 <details>
@@ -112,4 +116,90 @@ How code gets converted into websites
 <details>
   <summary>=== Creating the Navbar ===</summary>
 
-- </details>
+- Implementing useTheme from next-themes to setup theme toggler
+- The rest of it... well... styling
+</details>
+
+<details>
+  <summary>=== Introduction to Authentication ===</summary>
+
+https://courses.jsmastery.pro/course/ultimate-nextjs/008_authentication/001_what-is-authentication-copy
+https://auth0.com/docs/authorization/concepts/authz-and-authn
+https://roadmap.sh/guides/session-based-authentication
+https://roadmap.sh/guides/basics-of-authentication
+https://roadmap.sh/guides/jwt-authentication
+
+- Authentication
+  - Authentication is the process of verifying the identity of a user. It ensures that the person or entity accessing the system is who they claim to be.
+- Authorization
+  - Authorization, on the other hand, determines what actions a user is allowed to perform within the system after they've been authenticated. It defines the permissions and access levels granted to users based on their identity and role.
+
+Types of Authentication
+
+- Session-based
+- Token-based (JWT)
+- OAuth
+- Basic Authentication
+</details>
+
+<details>
+  <summary>=== HTTP State Management Mechanisms ===</summary>
+https://courses.jsmastery.pro/course/ultimate-nextjs/008_authentication/002_http-state-management-mechanisms
+
+</details>
+
+<details>
+  <summary>=== Create Auth Routes ===</summary>
+
+It's more about creating routes in group for the auth, so:
+(auth) -> layout.tsx, /sign-in/page.tsx, /sign-up/page.tsx
+(root) -> layout.tsx
+layout.tsx
+</details>
+
+<details>
+  <summary>=== Create Auth Layout & Social Auth Form ===</summary>
+
+- It's about creating the layout for auth and separate the form only
+- It's interesting that I also can make tailwindclass for backgroundImage: check tailwind.config.ts and the layout.tsx for auth
+- Naming new tailwindclass also can use 'number': check tailwind.config.ts on borderRadius "2"
+- There is "invert-colors" that can invert the color of the image base on the theme, check global.css (it also uses class called invert from tailwind builtin)
+
+</details>
+
+<details>
+  <summary>=== Setup NextAuth with Github Provider ===</summary>
+
+- Well it uses Auth.js
+- The process kind of similar to tutorial I had
+- Also need to look at Auth.js documentation, esp the getting started
+- When creating Github OAuth app, there is section wether Enable Device Flow or not, it is designed for devices that don't have an easy way to input text such as smart tv, gaming console
+- 
+</details>
+
+<details>
+  <summary>=== Implement Github SignIn ===</summary>
+
+- There is a nice diagram explanation here about how auth works: https://courses.jsmastery.pro/course/ultimate-nextjs/008_authentication/006_implement-github-signin
+- Folder called constants to store const, example the routes.ts
+- So far, the auth error handling looks simple:
+  - using try cath, with try only await the signIn() from next-auth/react
+  - the catch would be catching any kind of error with a little bit of conditional rednering
+  - I think all kind of 'error' is already thrown by the auth.js itself, I just need to 'catch' it
+- NEW THINGS: 
+  - So turns out Auth.js also has SessionProvider that I can use. On previous auth tutorial, it uses auth() from created auth.ts file and use it in asynchronus
+  - To use it: set provider in root layout.tsx (Look at root layout.tsx)
+  - WHOOPS!! I just found that it's better to use the exported auth() for the Nextjs App router, HMMMMMMM
+  - I wonder what will happened if I still use it...
+  - Okay, I think JSMastery will do two approach:
+    - If the component is server component, it will use auth() from the auth.ts
+    - If the component is client component, it will use the hook/the context provider from the SessionProvider
+  - Let's see if it's true, will update this part later...
+
+</details>
+
+<details>
+  <summary>=== Implement Google SignIn ===</summary>
+
+
+</details>
