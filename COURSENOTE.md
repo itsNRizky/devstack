@@ -105,6 +105,7 @@ How code gets converted into websites
 NOTE: UNIQUE THINGS HERE!!!
 So basically I just surfing around about "use client" in layout.tsx doesn't block it's page to be server component, but page.tsx and the children component has strict rules about this (client component parent will only have client component children)
 Based on ChatGPT: NextJS has special rules for where the layout.tsx can be client and the children can be client or server. It is because layout.tsx serves as a wrapper for the app's routing (?)
+
 </details>
 
 <details>
@@ -155,6 +156,7 @@ It's more about creating routes in group for the auth, so:
 (auth) -> layout.tsx, /sign-in/page.tsx, /sign-up/page.tsx
 (root) -> layout.tsx
 layout.tsx
+
 </details>
 
 <details>
@@ -174,8 +176,7 @@ layout.tsx
 - The process kind of similar to tutorial I had
 - Also need to look at Auth.js documentation, esp the getting started
 - When creating Github OAuth app, there is section wether Enable Device Flow or not, it is designed for devices that don't have an easy way to input text such as smart tv, gaming console
-- 
-</details>
+- </details>
 
 <details>
   <summary>=== Implement Github SignIn ===</summary>
@@ -186,7 +187,7 @@ layout.tsx
   - using try cath, with try only await the signIn() from next-auth/react
   - the catch would be catching any kind of error with a little bit of conditional rednering
   - I think all kind of 'error' is already thrown by the auth.js itself, I just need to 'catch' it
-- NEW THINGS: 
+- NEW THINGS:
   - So turns out Auth.js also has SessionProvider that I can use. On previous auth tutorial, it uses auth() from created auth.ts file and use it in asynchronus
   - To use it: set provider in root layout.tsx (Look at root layout.tsx)
   - WHOOPS!! I just found that it's better to use the exported auth() for the Nextjs App router, HMMMMMMM
@@ -201,5 +202,83 @@ layout.tsx
 <details>
   <summary>=== Implement Google SignIn ===</summary>
 
+- Same thing
+</details>
 
+<details>
+  <summary>=== Mobile Navigation ===</summary>
+
+- He seperates the NavLink into its own component, interesting way to make it reusable :D
+</details>
+
+<details>
+  <summary>=== Impelemnt LeftSideBar ===</summary>
+
+- The NavLink used again here, so it works like a charm :D
+</details>
+
+<details>
+  <summary>=== Implement RightSideBar ===</summary>
+
+- I just realised the usage of max-lg:hidden, I mean what does it do?
+- NEW THINGS: I can use the constants' key (in routes for example) to be a function that requires param and return a string! Check RightSidebar.tsx
+- NEW THINGS: There is a way to show icon dynamically, using devicon (look at TagCard.tsx)
+
+</details>
+
+<details>
+  <summary>=== What's State Management ===</summary>
+
+- Well, in this more like encourage me to use "WHY" when planning to use state management, especially like Global Client State Management such as Redux, Zustand, etc
+</details>
+
+<details>
+  <summary>=== Different Types of State Management ===</summary>
+
+- Interesting to read: https://courses.jsmastery.pro/course/ultimate-nextjs/010_state-management/002_different-types-of-state-management
+- Basically explains about the difference between local and global state
+- Also encourage to choose based on requirements, rather than hype
+- </details>
+
+<details>
+  <summary>=== URL State Management ===</summary>
+
+- Well, he explains about I can use the url to hold the state, just like in most ecommerce
+</details>
+
+<details>
+  <summary>=== Different URL Params in NextJS ===</summary>
+
+- Very interesting post: https://courses.jsmastery.pro/course/ultimate-nextjs/010_state-management/005_different-url-parameters-in-nextjs
+- If I want to get the params in the page.tsx -> get it from the page props
+- If I want to get the params in component (esp. client component) use the useParams or useSearchParams
+- But if the component is server, if the component is close to page.tsx, put it in props, one props drilling won't hurt
+- But if ithe component is too far, well, make it client :/
+
+</details>
+
+<details>
+  <summary>=== How to do URL State Management ===</summary>
+
+- Through <Link href={{pathname: "/posts", query: { keyName: "valueName"},}}> Posts </Link>
+- Using useRouter (for client component) router.push({pathname: "/posts", query: { keyName: "valueName", }};
+- Through using URLSearchParams JS builtin
+- There is npm package to ease the JS builtin even more :D = https://www.npmjs.com/package/query-string
+</details>
+
+<details>
+  <summary>=== Home Layout ===</summary>
+
+- Just make a framework for the home layout (search, filter, question posts)
+</details>
+
+<details>
+  <summary>=== Local Search Bar ===</summary>
+
+- I think he is going to create one component and literally use it in ALL use cases (What makes me wonder, how good is the styling gonna be? I mean it will be used in all kind of places) (Well, add the otherClasses to put tailwind styling...)
+- This component is so cool! Basically this component is an implementation of STATE MANAGEMENT USING GOOD OLD URL QUERY
+- It uses query-string package to basically manage url and the query. So I can add, modify, delete the query easily
+- The component (LocalSearch.tsx) basicaly is an input component where every changes (onChange) will trigger the url making (through useEffect)
+- The url making is generated using the helps of query-string to make a function to update the url query (formUrlQuery) and if there is nothing inside the input means need to remove the query from the url (using removeKeysFromUrlQuery)
+- Then don't forget to debounce it
 </details>
