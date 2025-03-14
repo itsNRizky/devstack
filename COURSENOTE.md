@@ -282,3 +282,19 @@ layout.tsx
 - The url making is generated using the helps of query-string to make a function to update the url query (formUrlQuery) and if there is nothing inside the input means need to remove the query from the url (using removeKeysFromUrlQuery)
 - Then don't forget to debounce it
 </details>
+<details>
+  <summary>=== Home Filters ===</summary>
+
+- Well simillar with local search bar, I mean the filter uses url query params too to filter the data. So it also uses the formUrlQuery and removeKeysFromUrlQuery
+</details>
+
+<details>
+  <summary>=== Question Card ===</summary>
+
+- There is an interesting part where I have to utilize on how to make reusable component. For example like in metric, there will be a Metric component that is clickable using Link but also there will be a time where the Metric is not clickable which just using Div
+- Setup hostname for image if the image is from outside the app
+</details>
+
+<details>
+
+</details>
